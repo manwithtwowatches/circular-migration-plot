@@ -13,8 +13,8 @@ module.exports = function(options) {
   if (!options.data) {
     throw('I need a data url!');
   }
-  if (!options.chart) {
-    throw('I need a chart node!');
+  if (!options.svg_element && !options.chart) {
+    throw('I need a chart node or an SVG element!');
   }
 
   if (typeof options.chart === 'string') {
@@ -22,6 +22,13 @@ module.exports = function(options) {
       element: options.chart
     };
   }
+
+  if (options.svg_element) {
+    options.chart = {
+      svg_element: options.svg_element
+    };
+  }
+
   if (typeof options.timeline === 'string') {
     options.timeline = {
       element: options.timeline
