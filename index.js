@@ -23,10 +23,8 @@ module.exports = function(options) {
     };
   }
 
-  if (options.svg_element) {
-    options.chart = {
-      svg_element: options.svg_element
-    };
+  if (options) {
+    options.chart = options;
   }
 
   if (typeof options.timeline === 'string') {

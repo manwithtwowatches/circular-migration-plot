@@ -24,10 +24,8 @@ module.exports = function(options) {
     };
   }
 
-  if (options.svg_element) {
-    options.chart = {
-      svg_element: options.svg_element
-    };
+  if (options) {
+    options.chart = options;
   }
 
   if (typeof options.timeline === 'string') {
@@ -1064,7 +1062,7 @@ module.exports = function() {
         var source = subgroups['source' + '-' + i + "-" + j],
             target = subgroups['target' + '-' + j + "-" + i];
         if (i === j) {
-          if (threshold === null || source.value > threshold) {
+          if (threshold === null || source.value >= threshold) {
             var target = subgroups['target' + '-' + i + "-" + j];
             chords.push({
               id: 'source-' + indices[i] + "-" + indices[j],
@@ -1089,7 +1087,7 @@ module.exports = function() {
             });
           }
         } else {
-          if (threshold === null || source.value > threshold) {
+          if (threshold === null || source.value >= threshold) {
             chords.push({
               id: 'source-' + indices[i] + "-" + indices[j],
               source: {
@@ -1114,7 +1112,7 @@ module.exports = function() {
           }
           var source = subgroups['source' + '-' + j + "-" + i],
               target = subgroups['target' + '-' + i + "-" + j];
-          if (threshold === null || source.value > threshold) {
+          if (threshold === null || source.value >= threshold) {
             chords.push({
               id: 'target-' + indices[i] + "-" + indices[j],
               source: {
