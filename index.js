@@ -5,7 +5,6 @@
  * Licensed under the MIT license.
  */
 
-var d3 = require('d3');
 var chart = require('./lib/chart');
 var timeline = require('./lib/timeline');
 
