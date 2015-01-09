@@ -206,7 +206,9 @@ module.exports = function(data, config) {
   });
 
   // needed for fade mouseover
-  var circle = element.append("circle").attr("r", config.outerRadius + 24);
+  var circle = element.append("circle")
+    .attr("r", config.outerRadius + 24)
+    .style({'fill': 'none'}); // Inline style required for MPJS image exporting
 
   var filter = svg.append('filter').attr('id', 'dropshadow');
   filter.append('feGaussianBlur').attr({
