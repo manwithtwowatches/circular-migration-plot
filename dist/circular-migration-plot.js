@@ -1229,6 +1229,10 @@ module.exports = function(diagram, config) {
   config.now = config.now || years[0];
   config.formatter = config.formatter || function(d) { return d };
 
+  if (config.no_timeline) {
+    return false;
+  }
+
   var form = d3.select(config.element).append('form');
 
   var year = form.selectAll('.year')
