@@ -306,6 +306,14 @@ module.exports = function(data, config) {
     }, config.infoPopupDelay);
   }
 
+  function chordHighlight(d, i) {
+    element.selectAll('.label').classed('highlight', function(p) {
+      return p.index == d.source.index;
+    });
+
+    chordInfo.call(this, d, i);
+  }
+
   // chord info
   // eg: West Asia → Pacific: 46
   function chordInfo(d) {
@@ -476,6 +484,10 @@ module.exports = function(data, config) {
       .attr("class", "group");
     group
       .on("mouseover", function(d) {
+        groupTextGroup.classed('highlight', function(p) {
+          return p.index == i;
+        });
+
         chord.classed("fade", function(p) {
           return p.source.id !== d.id && p.target.id !== d.id;
         });
@@ -657,7 +669,7 @@ module.exports = function(data, config) {
     chord.enter()
       .append("path")
       .attr("class", "chord")
-      .on('mousemove', chordInfo);
+      .on('mousemove', chordHighlight);
     chord
       .style("fill", chordColor)
       .transition()
